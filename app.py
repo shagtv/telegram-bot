@@ -4,7 +4,7 @@ import os
 import random
 import sys
 
-from telegram.ext import Updater, CommandHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 # Enabling logging
 logging.basicConfig(level=logging.INFO,
@@ -44,11 +44,19 @@ def random_handler(bot, update):
     update.message.reply_text("Random number: {}".format(number))
 
 
+def echo(update, context):
+    """Echo the user message."""
+    update.message.reply_text(update.message.text)
+
+
 if __name__ == '__main__':
     logger.info("Starting bot")
     updater = Updater(TOKEN)
 
     updater.dispatcher.add_handler(CommandHandler("start", start_handler))
     updater.dispatcher.add_handler(CommandHandler("random", random_handler))
+
+    # on noncommand i.e message - echo the message on Telegram
+    updater.dispatcher.add_handler(MessageHandler(Filters.text, echo))
 
     run(updater)
