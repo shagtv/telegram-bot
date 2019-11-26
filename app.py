@@ -44,7 +44,7 @@ def random_handler(bot, update):
     update.message.reply_text("Random number: {}".format(number))
 
 
-def echo(update, context):
+def echo_handler(update, context):
     """Echo the user message."""
     update.message.reply_text(update.message.text)
 
@@ -57,6 +57,6 @@ if __name__ == '__main__':
     updater.dispatcher.add_handler(CommandHandler("random", random_handler))
 
     # on noncommand i.e message - echo the message on Telegram
-    updater.dispatcher.add_handler(MessageHandler(Filters.text, echo))
+    updater.dispatcher.add_handler(MessageHandler(Filters.text, echo_handler))
 
     run(updater)
