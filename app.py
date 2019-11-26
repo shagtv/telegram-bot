@@ -49,6 +49,11 @@ def echo_handler(update, context):
     update.message.reply_text(update.message.text)
 
 
+def error_handler(update, context):
+    """Log Errors caused by Updates."""
+    logger.warning('Update "%s" caused error "%s"', update, context.error)
+
+
 if __name__ == '__main__':
     logger.info("Starting bot")
     updater = Updater(TOKEN)
@@ -58,5 +63,6 @@ if __name__ == '__main__':
 
     # on noncommand i.e message - echo the message on Telegram
     updater.dispatcher.add_handler(MessageHandler(Filters.text, echo_handler))
+    updater.dispatcher.add_error_handler(error_handler)
 
     run(updater)
