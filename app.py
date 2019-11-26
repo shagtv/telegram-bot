@@ -44,11 +44,10 @@ def random_handler(bot, update):
     update.message.reply_text("Random number: {}".format(number))
 
 
-if __name__ == '__main__':
-    logger.info("Starting bot")
-    updater = Updater(TOKEN)
+logger.info("Starting bot")
+updater = Updater(TOKEN)
 
-    updater.dispatcher.add_handler(CommandHandler("start", start_handler))
-    updater.dispatcher.add_handler(CommandHandler("random", random_handler))
+updater.dispatcher.add_handler(CommandHandler("start", start_handler))
+updater.dispatcher.add_handler(CommandHandler("random", random_handler))
 
-    run(updater)
+run(updater)
