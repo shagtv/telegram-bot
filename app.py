@@ -44,14 +44,14 @@ def random_handler(bot, update):
     update.message.reply_text("Random number: {}".format(number))
 
 
-def echo_handler(update, context):
+def echo_handler(bot, update):
     """Echo the user message."""
     update.message.reply_text(update.message.text)
 
 
-def error_handler(update, context):
+def error_handler(bot, update):
     """Log Errors caused by Updates."""
-    logger.warning('Update "%s" caused error "%s"', update, context.error)
+    logger.warning('Update "%s" caused error "%s"', bot, update.error)
 
 
 if __name__ == '__main__':
